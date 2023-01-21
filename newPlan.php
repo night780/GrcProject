@@ -11,14 +11,18 @@
             }
             return $randomString;
         }
-        echo "Your personal ID: ".IdGenerator(); ?> </p>
+        echo IdGenerator(); ?> </p>
 </div>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" onsubmit="return confirm('Are you sure you want to submit this form?');">
+<form action="submitForm.php" method="post" onsubmit="return confirm('Are you sure you want to submit this form?');">
     <div class="form-group">
         <label for="summerClasses">Summer Classes:</label>
         <input type="text" class="form-control" id="summerClasses" name="summerClasses">
     </div>
+
+
+
+
 
     <div class="form-group">
         <label for="fallClasses">Fall Classes:</label>
@@ -32,7 +36,9 @@
         <label for="springClasses">Spring Classes:</label>
         <input type="text" class="form-control" id="springClasses" name="springClasses">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" value="Submit" class="btn
+    btn-primary">Submit</button>
+
 </form>
 
 </body>

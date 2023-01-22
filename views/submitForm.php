@@ -1,19 +1,26 @@
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $summerClasses = $_POST['summerClasses'];
-    $fallClasses = $_POST['fallClasses'];
-    $winterClasses = $_POST['winterClasses'];
-    $springClasses = $_POST['springClasses'];
-    $uniqueId = $_POST['uniqueId'];
-
-    echo "Unique ID: " . $uniqueId . "<br>";
-
-    echo "Summer Classes: " . $summerClasses . "<br>";
-    echo "Fall Classes: " . $fallClasses . "<br>";
-    echo "Winter Classes: " . $winterClasses . "<br>";
-    echo "Spring Classes: " . $springClasses;
-}
-?>
 <h1>Testing</h1>
+
+
+<table>
+    <tr>
+        <td>Summer Classes:</td>
+        <td>{{@SESSION.summerClasses}}</td>
+    </tr>
+    <tr>
+        <td>Fall Classes:</td>
+        <td>{{@SESSION.fallClasses}}</td>
+    </tr>
+    <tr>
+        <td>Winter Classes:</td>
+        <td>{{@SESSION.winterClasses}}</td>
+    </tr>
+    <tr>
+        <td>Spring Classes:</td>
+        <td>{{@SESSION.springClasses}}</td>
+    </tr>
+    <tr>
+        <td>Unique ID:</td>
+        <td>{{@SESSION.uniqueId}}</td>
+    </tr>
+</table>

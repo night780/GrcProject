@@ -20,34 +20,39 @@
     <p> <?php function IdGenerator($length = 6) {
             $characters = 'ABCDEFHIJKLMNOPQRSTUVWXYZ2345679';
             $strlen = strlen($characters);
-            $randomString = '';
+            $uniqueId = '';
             for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[rand(0, $strlen - 1)];
+                $uniqueId .= $characters[rand(0, $strlen - 1)];
             }
-            return $randomString;
+            return $uniqueId;
         }
-//        echo IdGenerator(); ?><!-- </p>-->
+
+        ?><!-- </p>-->
 <!--</div>-->
+
+
 <form action="submitForm" method="post" onsubmit="return confirm('Are you sure you want to submit this form?');">
     <div class="form-group">
         <label for="summerClasses">Summer Classes:</label>
-        <input type="text" class="form-control" id="summerClasses" name="summerClasses">
+        <input type="text" class="form-control" id="summerClasses" name="summerClasses" value="{{@summerClasses}}">
     </div>
+
     <div class="form-group">
         <label for="fallClasses">Fall Classes:</label>
-        <input type="text" class="form-control" id="fallClasses" name="fallClasses">
+        <input type="text" class="form-control" id="fallClasses" name="fallClasses" value="{{@fallClasses}}">
     </div>
     <div class="form-group">
         <label for="winterClasses">Winter Classes:</label>
-        <input type="text" class="form-control" id="winterClasses" name="winterClasses">
+        <input type="text" class="form-control" id="winterClasses" name="winterClasses" value="{{@winterClasses}}">
     </div>
     <div class="form-group">
         <label for="springClasses">Spring Classes:</label>
-        <input type="text" class="form-control" id="springClasses" name="springClasses">
+        <input type="text" class="form-control" id="springClasses" name="springClasses" value="{{@springClasses}}">
     </div>
-    <input type="hidden" name="uniqueId" value="<?php echo IdGenerator(); ?>">
-    <button type="submit" value="Submit" class="btn btn-
-    primary">Submit</button>
+
+    <input type="hidden" name="uniqueId" value="{{@uniqueId}}">
+    <button type="submit" class="btn btn-primary">Submit</button>
+
 </form>
 
 </body>

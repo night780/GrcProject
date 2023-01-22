@@ -67,6 +67,11 @@ class Controller
             $f3->set('springClasses', $_SESSION['springClasses']);
             $f3->set('uniqueId', $_SESSION['uniqueId']);
 
+            $_SESSION['isFormSent'] = '✔ Submitted';
+                $f3->set('isFormSent', '✔ Submitted');
+        }else{
+            $_SESSION['isFormSent'] = '❌ Failed to Submit';
+            $f3->set('isFormSent', '❌ Failed to Submit');
         }
 
 

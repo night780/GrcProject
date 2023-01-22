@@ -1,0 +1,71 @@
+navbar {
+    background-color: rgba(29,255,92,0.23); /* Change to desired color */
+}
+body {
+    background-color: rgba(219,255,239,0.49); /* Change to desired color */
+}
+/*.center-button {*/
+/*    padding: 0px 10px;*/
+/*    align-items: center;*/
+/*    width: 75px;*/
+/*    height: 75px;*/
+/*    text-align: center;*/
+/*}*/
+
+.center-button {
+    padding: 0px 10px 0px 10px;
+    font-size: 15px;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+}
+.details {
+    background-color: rgba(29,255,92,0.64);
+    font-size: 15px;
+    border-style: groove;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form {
+    width: 50%; /* adjust the width as per your requirement */
+    margin: 0 auto; /* center the form horizontally */
+}
+
+.form-group {
+    margin-bottom: 2rem; /* add some margin at the bottom of each form group */
+}
+
+label {
+    font-size: 1.2rem; /* increase the font size of the label */
+    font-weight: bold; /* make the label text bold */
+    display: block; /* make the label display on a new line */
+    text-align: left; /* align the label text to the left */
+}
+
+input {
+    padding: 0.5rem; /* add some padding inside the input */
+    border-radius: 5px; /* add rounded corners to the input */
+    border: 1px solid #ccc; /* add a border to the input */
+    width: 100%; /* make the input take up the full width of its container */
+}
+
+button[type="submit"] {
+    background-color: rgba(29, 255, 92, 0.24);
+    font-size: 15px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    margin-top: 1rem;
+    width: 50%;
+    margin: 0 auto; /* center the button horizontally */
+    display: flex;
+    justify-content: center;
+}
+
+
+
+

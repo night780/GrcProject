@@ -9,7 +9,7 @@ session_start();
 $f3 = Base::instance();
 
 $con = new Controller($f3);
-
+$dataLayer = new DataLayer();
 
 //Define a default route
 $f3->route(/**
@@ -31,27 +31,27 @@ $f3->route(/**
 $f3->route(/**
  * FEATURES
  * @return void
- */ 'GET /newPlan', function () {
+ */ 'GET|POST /newPlan', function ($f3) {
 
-    $GLOBALS['con']->newPlan();
+    $GLOBALS['con']->newPlan($f3);
 
 });
 //Define a update plan route
 $f3->route(/**
  * ENTRY
  * @return void
- */ 'GET /updatePlan', function () {
+ */ 'GET|POST /updatePlan', function ($f3) {
 
-    $GLOBALS['con']->updatePlan();
+    $GLOBALS['con']->updatePlan($f3);
 
 });
 
 $f3->route(/**
  * ENTRY
  * @return void
- */ 'POST /submitForm', function () {
+ */ 'POST /submitForm', function ($f3) {
 
-    $GLOBALS['con']->submitForm();
+    $GLOBALS['con']->submitForm($f3);
 
 });
 

@@ -3,12 +3,14 @@
 //Require the autoload file
 require_once('vendor/autoload.php');
 
+
 //Starts session
 session_start();
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
 //creates an instance of base class
 $f3 = Base::instance();
 
-$con = new Controller($f3);
+$con = new Controller($f3, $dbh);
 $dataLayer = new DataLayer();
 
 //Define a default route
@@ -31,7 +33,7 @@ $f3->route(/**
 $f3->route(/**
  * FEATURES
  * @return void
- */ 'GET|POST /newPlan', function ($f3) {
+ */ 'GET|POST /newPlan', function ($f3) use ($dbh) {
 
     $GLOBALS['con']->newPlan($f3);
 
@@ -49,9 +51,11 @@ $f3->route(/**
 $f3->route(/**
  * ENTRY
  * @return void
- */ 'POST /submitForm', function ($f3) {
+ */ 'POST /submitForm', function ($f3) use ($dbh) {
 
-    $GLOBALS['con']->submitForm($f3);
+
+    $GLOBALS['con']->submitForm($f3, $dbh);
+
 
 });
 

@@ -21,18 +21,21 @@ class Controller
         $view = new Template();
         echo $view->render('views/home.php');
     }
+
     function newPlan()
     {
         $view = new Template();
         echo $view->render('views/newPlan.php');
     }
+
     function updatePlan()
     {
         $view = new Template();
         echo $view->render('views/updatePlan.php');
     }
 
-    function submitForm($f3)
+    function submitForm($f3, $dbh)
+
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -48,35 +51,42 @@ class Controller
             $springClasses = $_POST['springClasses'];
             $_SESSION['springClasses'] = $springClasses;
 
-            function IdGenerator($length = 6) {
-            $characters = 'ABCDEFHIJKLMNOPQRSTUVWXYZ2345679';
-            $strlen = strlen($characters);
-            $uniqueId = '';
-            for ($i = 0; $i < $length; $i++) {
-                $uniqueId .= $characters[rand(0, $strlen - 1)];
+            function IdGenerator($length = 6)
+            {
+                $characters = 'ABCDEFHIJKLMNOPQRSTUVWXYZ2345679';
+                $strlen = strlen($characters);
+                $uniqueId = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $uniqueId .= $characters[rand(0, $strlen - 1)];
+                }
+                return $uniqueId;
             }
-            return $uniqueId;
-        }
+
             $uniqueId = IdGenerator();
             $_SESSION['uniqueId'] = $uniqueId;
             $this->_f3->set('uniqueId', $uniqueId);
 
-            $f3->set('summerClasses', $_SESSION['summerClasses']);
-            $f3->set('fallClasses', $_SESSION['fallClasses']);
-            $f3->set('winterClasses', $_SESSION['winterClasses']);
-            $f3->set('springClasses', $_SESSION['springClasses']);
-            $f3->set('uniqueId', $_SESSION['uniqueId']);
 
-            $_SESSION['isFormSent'] = '✔ Submitted';
+            try {
+                $stmt = $dbh->prepare("INSERT INTO plans (uniqueId, summerClasses, fallClasses, winterClasses, springClasses) VALUES (:uniqueId, :summerClasses, :fallClasses, :winterClasses, :springClasses)");
+                $stmt->bindParam(':uniqueId', $uniqueId);
+                $stmt->bindParam(':summerClasses', $summerClasses);
+                $stmt->bindParam(':fallClasses', $fallClasses);
+                $stmt->bindParam(':winterClasses', $winterClasses);
+                $stmt->bindParam(':springClasses', $springClasses);
+                $stmt->execute();
+                $_SESSION['isFormSent'] = '✔ Submitted';
                 $f3->set('isFormSent', '✔ Submitted');
-        }else{
+            } catch (PDOException $e) {
+                $_SESSION['isFormSent'] = '❌ Failed to Submit';
+                $f3->set('isFormSent', '❌ Failed to Submit');
+                echo "Error: " . $e->getMessage();
+            }
+        } else {
             $_SESSION['isFormSent'] = '❌ Failed to Submit';
             $f3->set('isFormSent', '❌ Failed to Submit');
         }
-
-
         $view = new Template();
         echo $view->render('views/submitForm.php');
     }
-
 }

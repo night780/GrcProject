@@ -5,6 +5,14 @@
     <title>Admin Login</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
+    <img src="images/Green_River_College.svg" width="15%" height="15%"
+         class="d-inline-block align-top" alt="Brand Image"
+         onclick="window.location.href='home'">
+<h1>Admin Login</h1>
+</nav>
 <form action="adminLogin" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">
@@ -29,8 +37,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-
-</nav>
 </html>

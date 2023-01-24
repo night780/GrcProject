@@ -42,9 +42,9 @@ $f3->route(/**
 $f3->route(/**
  * ENTRY
  * @return void
- */ 'GET|POST /updatePlan', function ($f3) {
+ */ 'GET|POST /updatePlan', function ($f3) use ($dbh) {
 
-    $GLOBALS['con']->updatePlan($f3);
+    $GLOBALS['con']->updatePlan($f3, $dbh);
 
 });
 

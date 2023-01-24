@@ -28,8 +28,44 @@ class Controller
         echo $view->render('views/newPlan.php');
     }
 
-    function updatePlan()
+    function updatePlan($f3, $dbh)
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $uniqueId = $_POST['uniqueId'];
+
+            $stmt = $dbh->prepare("SELECT * FROM plans WHERE uniqueId = :uniqueId");
+            $stmt->bindParam(':uniqueId', $uniqueId);
+            $stmt->execute();
+            $plan = $stmt->fetch();
+
+            if ($plan) {
+                $f3->set('plan', $plan);
+
+                if (isset($_POST['update'])) {
+                    $summerClasses = $_POST['summerClasses'];
+                    $fallClasses = $_POST['fallClasses'];
+                    $winterClasses = $_POST['winterClasses'];
+                    $springClasses = $_POST['springClasses'];
+
+                    $stmt = $dbh->prepare("UPDATE plans SET summerClasses = :summerClasses, fallClasses = :fallClasses, winterClasses = :winterClasses, springClasses = :springClasses WHERE uniqueId = :uniqueId");
+                    $stmt->bindParam(':summerClasses', $summerClasses);
+                    $stmt->bindParam(':fallClasses', $fallClasses);
+                    $stmt->bindParam(':winterClasses', $winterClasses);
+                    $stmt->bindParam(':springClasses', $springClasses);
+                    $stmt->bindParam(':uniqueId', $uniqueId);
+                    $stmt->execute();
+
+                    echo $summerClasses;
+                    echo $fallClasses;
+                    echo $winterClasses;
+                    echo $springClasses;
+
+                    echo "Plan Updated!";
+                }
+            } else {
+                echo "Plan not found!";
+            }
+        }
         $view = new Template();
         echo $view->render('views/updatePlan.php');
     }

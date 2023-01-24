@@ -13,7 +13,7 @@
          onclick="window.location.href='home'">
 
 </nav>
-<h1 class="text-center">Update Quarterly Planner</h1>
+<h1 class="text-center">New Quarterly Planner</h1>
 
 <!--<div class="details">-->
 <!--    <h3>Unique ID:</h3>-->

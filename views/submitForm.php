@@ -40,3 +40,29 @@
         <td>{{@SESSION.uniqueId}}</td>
     </tr>
 </table>
+
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>
+<script>
+    if (window.matchMedia) {
+        var mediaQueryList = window.matchMedia('print');
+        mediaQueryList.addListener(function (mql) {
+            if (mql.matches) {
+                // before print
+            } else {
+                // after print
+                if (!window.matchMedia('print').matches) {
+                    alert("No printer found. Please connect a printer and try again.");
+                }
+            }
+        });
+    }
+</script>
+
+<button class="print-button" onclick="printPage()">Print</button>
+
+
+

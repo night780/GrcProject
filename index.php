@@ -21,6 +21,15 @@ $f3->route(/**
 
     $GLOBALS['con']->home();
 });
+
+//Define a admin login route
+$f3->route(/**
+ * HOME
+ * @return void
+ */ 'GET|POST /adminLogin', function () {
+
+    $GLOBALS['con']->adminLogin();
+});
 //Define a home route
 $f3->route(/**
  * HOME

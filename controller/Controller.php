@@ -22,6 +22,12 @@ class Controller
         echo $view->render('views/home.php');
     }
 
+    function adminLogin()
+    {
+        $view = new Template();
+        echo $view->render('views/adminLogin.php');
+    }
+
     function newPlan()
     {
         $view = new Template();

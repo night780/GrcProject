@@ -74,6 +74,11 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+#admin-login {
+    background-color: #333;
+    padding: 10px;
+}
+
 
 
 

@@ -3,7 +3,6 @@
 //Require the autoload file
 require_once('vendor/autoload.php');
 
-
 //Starts session
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
@@ -38,6 +37,10 @@ $f3->route(/**
     $GLOBALS['con']->home();
 });
 
+$f3->route('GET /adminPage', function () {
+    $GLOBALS['con']->adminPage();
+});
+
 //Define a new plan route
 $f3->route(/**
  * FEATURES
@@ -56,18 +59,16 @@ $f3->route(/**
     $GLOBALS['con']->updatePlan($f3, $dbh);
 
 });
+$uniqueId = $_SESSION['uniqueId'];
 
-$f3->route(/**
- * ENTRY
- * @return void
- */ 'POST /submitForm', function ($f3) use ($dbh) {
+$f3->set('uniqueId', $uniqueId);
 
+$f3->route('GET|POST /submitForm',function ($f3) use
+($dbh) {
 
     $GLOBALS['con']->submitForm($f3, $dbh);
 
-
 });
-
 
 //runs fat free
 $f3->run();

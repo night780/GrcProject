@@ -27,6 +27,11 @@ class Controller
         $view = new Template();
         echo $view->render('views/adminLogin.php');
     }
+    function adminPage()
+    {
+        $view = new Template();
+        echo $view->render('views/adminPage.php');
+    }
 
     function newPlan()
     {
@@ -76,8 +81,8 @@ class Controller
         echo $view->render('views/updatePlan.php');
     }
 
-    function submitForm($f3, $dbh)
 
+    function submitForm($f3, $dbh)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -93,22 +98,23 @@ class Controller
             $springClasses = $_POST['springClasses'];
             $_SESSION['springClasses'] = $springClasses;
 
+            $uniqueId = '';
+
             function IdGenerator($length = 6)
             {
                 $characters = 'ABCDEFHIJKLMNOPQRSTUVWXYZ2345679';
                 $strlen = strlen($characters);
-                $uniqueId = '';
+
                 for ($i = 0; $i < $length; $i++) {
                     $uniqueId .= $characters[rand(0, $strlen - 1)];
                 }
                 return $uniqueId;
             }
 
+
             $uniqueId = IdGenerator();
             $_SESSION['uniqueId'] = $uniqueId;
-            $this->_f3->set('uniqueId', $uniqueId);
-
-
+            var_dump($_SESSION['uniqueId']);
             try {
                 $stmt = $dbh->prepare("INSERT INTO plans (uniqueId, summerClasses, fallClasses, winterClasses, springClasses) VALUES (:uniqueId, :summerClasses, :fallClasses, :winterClasses, :springClasses)");
                 $stmt->bindParam(':uniqueId', $uniqueId);
@@ -121,14 +127,23 @@ class Controller
                 $f3->set('isFormSent', '✔ Submitted');
             } catch (PDOException $e) {
                 $_SESSION['isFormSent'] = '❌ Failed to Submit';
+
                 $f3->set('isFormSent', '❌ Failed to Submit');
                 echo "Error: " . $e->getMessage();
             }
+
         } else {
             $_SESSION['isFormSent'] = '❌ Failed to Submit';
+            $uniqueId = $_SESSION['uniqueId'];
+
             $f3->set('isFormSent', '❌ Failed to Submit');
+
         }
-        $view = new Template();
-        echo $view->render('views/submitForm.php');
+        //THIS IS A TEST
+        //THIS IS A TEST
+       // header("Location: /submitForm/$uniqueId");
+      //  exit;
+
+        echo Template::instance()->render('views/submitForm.php');
     }
 }

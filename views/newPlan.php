@@ -15,28 +15,13 @@
 </nav>
 <h1 class="text-center">New Quarterly Planner</h1>
 
-<!--<div class="details">-->
-<!--    <h3>Unique ID:</h3>-->
-    <p> <?php function IdGenerator($length = 6) {
-            $characters = 'ABCDEFHIJKLMNOPQRSTUVWXYZ2345679';
-            $strlen = strlen($characters);
-            $uniqueId = '';
-            for ($i = 0; $i < $length; $i++) {
-                $uniqueId .= $characters[rand(0, $strlen - 1)];
-            }
-            return $uniqueId;
-        }
+<form action="submitForm" method="post"
+      onsubmit="return confirm('Are you sure you want to submit this form?');">
 
-        ?><!-- </p>-->
-<!--</div>-->
-
-
-<form action="submitForm" method="post" onsubmit="return confirm('Are you sure you want to submit this form?');">
     <div class="form-group">
         <label for="summerClasses">Summer Classes:</label>
         <input type="text" class="form-control" id="summerClasses" name="summerClasses" value="{{@summerClasses}}">
     </div>
-
     <div class="form-group">
         <label for="fallClasses">Fall Classes:</label>
         <input type="text" class="form-control" id="fallClasses" name="fallClasses" value="{{@fallClasses}}">
@@ -49,6 +34,7 @@
         <label for="springClasses">Spring Classes:</label>
         <input type="text" class="form-control" id="springClasses" name="springClasses" value="{{@springClasses}}">
     </div>
+
 
     <input type="hidden" name="uniqueId" value="{{@uniqueId}}">
     <button type="submit" class="btn btn-primary">Submit</button>

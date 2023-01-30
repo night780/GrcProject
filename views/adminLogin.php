@@ -13,7 +13,7 @@
          onclick="window.location.href='home'">
 <h1>Admin Login</h1>
 </nav>
-<form action="adminLogin" method="post">
+<form action="adminPage" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">
     <br>
@@ -24,17 +24,27 @@
 </form>
 
 <?php
-session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    if ($username == "admin" && $password == "adminpassword") {
+    // Check connection
+    if ($dbh->connect_error) {
+        die("Connection failed: " . $dbh->connect_error);
+    }
+    // Check if the user exists in the database
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $result = $dbh->query($sql);
+    if ($result->num_rows > 0) {
+        // Set the session variable
         $_SESSION["admin"] = true;
+        // Redirect to the admin page
         header("location: index.php");
     } else {
         echo "Invalid username or password";
     }
+    $dbh->close();
 }
 ?>
+
 
 </html>

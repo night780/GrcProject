@@ -22,7 +22,7 @@ body {
     width: 75px;
     height: 75px;
 }
-.details {
+.details  {
     background-color: rgba(29,255,92,0.64);
     font-size: 15px;
     border-style: groove;

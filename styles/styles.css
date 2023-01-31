@@ -1,19 +1,14 @@
-navbar {
-    background-color: rgba(29,255,92,0.23); /* Change to desired color */
+nav {
+    background-color: rgba(29, 255, 92, 0.23);
+    padding: 10px;
 }
+
 body {
-    background-color: rgba(219,255,239,0.49); /* Change to desired color */
+    background-color: rgba(219, 255, 239, 0.49);
 }
-/*.center-button {*/
-/*    padding: 0px 10px;*/
-/*    align-items: center;*/
-/*    width: 75px;*/
-/*    height: 75px;*/
-/*    text-align: center;*/
-/*}*/
 
 .center-button {
-    padding: 0px 10px 0px 10px;
+    padding: 10px;
     font-size: 15px;
     border-radius: 10%;
     display: flex;
@@ -22,35 +17,37 @@ body {
     width: 75px;
     height: 75px;
 }
-.details  {
-    background-color: rgba(29,255,92,0.64);
+
+.details {
+    background-color: rgba(29, 255, 92, 0.64);
     font-size: 15px;
     border-style: groove;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 form {
-    width: 50%; /* adjust the width as per your requirement */
-    margin: 0 auto; /* center the form horizontally */
+    width: 50%;
+    margin: 0 auto;
 }
 
 .form-group {
-    margin-bottom: 2rem; /* add some margin at the bottom of each form group */
+    margin-bottom: 2rem;
 }
 
 label {
-    font-size: 1.2rem; /* increase the font size of the label */
-    font-weight: bold; /* make the label text bold */
-    display: block; /* make the label display on a new line */
-    text-align: left; /* align the label text to the left */
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    text-align: left;
 }
 
 input {
-    padding: 0.5rem; /* add some padding inside the input */
-    border-radius: 5px; /* add rounded corners to the input */
-    border: 1px solid #ccc; /* add a border to the input */
-    width: 100%; /* make the input take up the full width of its container */
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
 }
 
 button[type="submit"] {
@@ -61,10 +58,11 @@ button[type="submit"] {
     border: none;
     margin-top: 1rem;
     width: 50%;
-    margin: 0 auto; /* center the button horizontally */
+    margin: 0 auto;
     display: flex;
     justify-content: center;
 }
+
 .print-button {
     padding: 10px 20px;
     font-size: 18px;
@@ -79,10 +77,19 @@ button[type="submit"] {
     padding: 10px;
 }
 
+#studentID {
+    padding: 10px;
+    font-size: 18px;
+    width: 200px;
+    margin-bottom: 20px;
+}
 
-
-
-
-
-
-
+.advisor {
+    width: 400px;
+    height: 150px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}

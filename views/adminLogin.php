@@ -24,7 +24,7 @@
 </form>
 
 <?php
-echo "Hello World";
+echo 'Hello World';
 ?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

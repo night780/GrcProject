@@ -19,27 +19,37 @@
     <tr>
         <td>Form submitted successfully?: {{@SESSION.isFormSent}}</td>
     </tr>
-    <tr>
-        <td>Summer Classes:</td>
-        <td>{{@SESSION.summerClasses}}</td>
-    </tr>
-    <tr>
-        <td>Fall Classes:</td>
-        <td>{{@SESSION.fallClasses}}</td>
-    </tr>
-    <tr>
-        <td>Winter Classes:</td>
-        <td>{{@SESSION.winterClasses}}</td>
-    </tr>
-    <tr>
-        <td>Spring Classes:</td>
-        <td>{{@SESSION.springClasses}}</td>
-    </tr>
-    <tr>
-        <td>Unique ID:</td>
-        <td>{{@SESSION.uniqueId}}</td>
-    </tr>
+<!--    <tr>-->
+<!--        <td>Summer Classes:</td>-->
+<!--        <td>{{@SESSION.summerClasses}}</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>Fall Classes:</td>-->
+<!--        <td>{{@SESSION.fallClasses}}</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>Winter Classes:</td>-->
+<!--        <td>{{@SESSION.winterClasses}}</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>Spring Classes:</td>-->
+<!--        <td>{{@SESSION.springClasses}}</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>Unique ID:</td>-->
+<!--        <td>{{@SESSION.uniqueId}}</td>-->
+<!--    </tr>-->
 </table>
+<?php
+if (isset($_POST) && count($_POST) > 0) {
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, "Classes") !== false) {
+            $quarterYear = str_replace("Classes", "", $key);
+            echo "Classes for " . $quarterYear . ": " . $value . "<br>";
+        }
+    }
+}
+?>
 
 <script>
     function printPage() {

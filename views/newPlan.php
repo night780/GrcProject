@@ -22,17 +22,19 @@ echo "Hello world"
 
     <div class="form-group">
         <label for="quarterYear">Quarter and Year:</label>
-        <select class="form-control" id="quarterYear" name="quarterYear" onchange="addForm(this.value)">
+        <select class="form-control" id="quarterYear" name="quarterYear"
+                onchange="addForm(this.value)">
             <option value="">Select Quarter and Year</option>
         </select>
     </div>
 
     <div id="formsContainer"></div>
 
-    <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submitBtn"
+            style="display: none;">Submit
+    </button>
 
 </form>
-
 <script>
     function addForm(selectedValue) {
         if (!selectedValue) return;
@@ -56,12 +58,12 @@ echo "Hello world"
         let classesYear = document.createElement("label");
         classesYear.innerHTML = year;
         classesLabel.appendChild(classesYear);
-
         let classesInput = document.createElement("input");
         classesInput.type = "text";
         classesInput.className = "form-control";
         classesInput.id = quarter + "Classes";
         classesInput.name = quarter + "Classes";
+        classesInput.value = "{{@quarter}}"+"{{@year}}"+"{{@Classes}}";
         form.appendChild(classesLabel);
         form.appendChild(classesInput);
         document.getElementById("formsContainer").appendChild(form);

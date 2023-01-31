@@ -14,9 +14,17 @@
 
 </nav>
 <h1 class="text-center">New Quarterly Planner</h1>
-
+<?php
+echo "Hello world"
+?>
 <form action="submitForm" method="post"
       onsubmit="return confirm('Are you sure you want to submit this form?');">
+
+    <div class="form-group">
+        <label for="quarterYear">Quarter and Year:</label>
+        <select class="form-control" id="quarterYear" name="quarterYear">
+        </select>
+    </div>
 
     <div class="form-group">
         <label for="summerClasses">Summer Classes:</label>
@@ -35,11 +43,32 @@
         <input type="text" class="form-control" id="springClasses" name="springClasses" value="{{@springClasses}}">
     </div>
 
-
     <input type="hidden" name="uniqueId" value="{{@uniqueId}}">
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
+<script>
+    const year = new Date().getFullYear();
+    const quarterYear = document.getElementById('quarterYear');
+
+    const quarters = [
+        `Summer ${year - 1}`,
+        `Fall ${year}`,
+        `Winter ${year}`,
+        `Spring ${year}`,
+        `Summer ${year}`,
+        `Fall ${year + 1}`,
+        `Winter ${year + 1}`,
+        `Spring ${year + 1}`
+    ];
+
+    for (const quarter of quarters) {
+        const option = document.createElement('option');
+        option.value = quarter;
+        option.text = quarter;
+        quarterYear.add(option);
+    }
+</script>
 
 </body>
 </html>

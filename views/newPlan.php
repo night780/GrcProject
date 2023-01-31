@@ -22,53 +22,69 @@ echo "Hello world"
 
     <div class="form-group">
         <label for="quarterYear">Quarter and Year:</label>
-        <select class="form-control" id="quarterYear" name="quarterYear">
+        <select class="form-control" id="quarterYear" name="quarterYear" onchange="addForm(this.value)">
+            <option value="">Select Quarter and Year</option>
         </select>
     </div>
 
-    <div class="form-group">
-        <label for="summerClasses">Summer Classes:</label>
-        <input type="text" class="form-control" id="summerClasses" name="summerClasses" value="{{@summerClasses}}">
-    </div>
-    <div class="form-group">
-        <label for="fallClasses">Fall Classes:</label>
-        <input type="text" class="form-control" id="fallClasses" name="fallClasses" value="{{@fallClasses}}">
-    </div>
-    <div class="form-group">
-        <label for="winterClasses">Winter Classes:</label>
-        <input type="text" class="form-control" id="winterClasses" name="winterClasses" value="{{@winterClasses}}">
-    </div>
-    <div class="form-group">
-        <label for="springClasses">Spring Classes:</label>
-        <input type="text" class="form-control" id="springClasses" name="springClasses" value="{{@springClasses}}">
-    </div>
+    <div id="formsContainer"></div>
 
-    <input type="hidden" name="uniqueId" value="{{@uniqueId}}">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Submit</button>
 
 </form>
+
 <script>
-    const year = new Date().getFullYear();
-    const quarterYear = document.getElementById('quarterYear');
+    function addForm(selectedValue) {
+        if (!selectedValue) return;
+        let year = (new Date()).getFullYear();
+        let quarterYear = selectedValue.split(" ");
+        let quarter = quarterYear[0];
+        year = parseInt(quarterYear[1]);
+        let formId = quarter + year;
+        let existingForm = document.getElementById(formId);
+        if (existingForm) {
+            existingForm.style.display = "block";
+            return;
+        }
+        let form = document.createElement("div");
+        form.id = formId;
+        form.className = "form-group";
+        form.style.marginTop = "20px";
+        let classesLabel = document.createElement("label");
+        classesLabel.htmlFor = quarter + "Classes";
+        classesLabel.innerHTML = quarter + " Classes:";
+        let classesYear = document.createElement("label");
+        classesYear.innerHTML = year;
+        classesLabel.appendChild(classesYear);
 
-    const quarters = [
-        `Summer ${year - 1}`,
-        `Fall ${year}`,
-        `Winter ${year}`,
-        `Spring ${year}`,
-        `Summer ${year}`,
-        `Fall ${year + 1}`,
-        `Winter ${year + 1}`,
-        `Spring ${year + 1}`
-    ];
-
-    for (const quarter of quarters) {
-        const option = document.createElement('option');
-        option.value = quarter;
-        option.text = quarter;
-        quarterYear.add(option);
+        let classesInput = document.createElement("input");
+        classesInput.type = "text";
+        classesInput.className = "form-control";
+        classesInput.id = quarter + "Classes";
+        classesInput.name = quarter + "Classes";
+        form.appendChild(classesLabel);
+        form.appendChild(classesInput);
+        document.getElementById("formsContainer").appendChild(form);
+        document.getElementById("submitBtn").style.display = "block";
     }
+
+    function populateQuarterYearOptions() {
+        let currentYear = (new Date()).getFullYear();
+        let quarters = ["Summer", "Fall", "Winter", "Spring"];
+        let select = document.getElementById("quarterYear");
+        for (let i = 0; i < quarters.length; i++) {
+            for (let j = -1; j <= 1; j++) {
+                let option = document.createElement("option");
+                option.value = quarters[i] + " " + (currentYear + j);
+                option.innerHTML = option.value;
+                select.appendChild(option);
+            }
+        }
+    }
+
+    populateQuarterYearOptions();
 </script>
+
 
 </body>
 </html>
